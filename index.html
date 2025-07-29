@@ -28,7 +28,9 @@
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </nav>
-        <a href="#" class="btn btn-secondary">Заказать демо</a>
+        <a href="#" class="btn btn-secondary open-demo-modal-btn"
+          >Заказать демо</a
+        >
       </div>
     </header>
 
@@ -43,12 +45,13 @@
                 системы Januya, которая объединяет ИИ и точные модели
                 компьютерного зрения.
               </p>
+              <!-- MODIFIED HERO BUTTONS -->
               <div class="hero-buttons">
-                <a
-                  href="http://127.0.0.1:6564"
-                  target="_blank"
-                  class="btn btn-secondary"
-                  >Смотреть демо</a
+                <a href="#" id="openVideoBtn" class="btn btn-primary btn-large">
+                  <i class="fas fa-play-circle"></i> Смотреть видео
+                </a>
+                <a href="#" class="btn btn-secondary open-demo-modal-btn"
+                  >Заказать демо</a
                 >
               </div>
             </div>
@@ -230,30 +233,36 @@
             Присоединяйтесь к будущему управления птицеводством. Начните с
             Januya сегодня и ощутите разницу, которую может сделать ИИ.
           </p>
-          <a href="#" class="btn btn-primary btn-large"
+          <a href="#" class="btn btn-primary btn-large open-demo-modal-btn"
             >Запросить демо сейчас</a
           >
         </div>
       </section>
     </main>
-    <!-- 
-    <footer>
-      <div class="container">
-        <p>© 2023 Januya Guardian. Все права защищены.</p>
-        <div class="social-links">
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-          <a href="#" aria-label="Instagram"
-            ><i class="fab fa-instagram"></i
-          ></a>
+
+    <div id="videoModal" class="modal">
+      <div class="modal-content video-modal-content">
+        <span class="close-button video-close-button">×</span>
+        <div class="video-container">
+          <!-- The YouTube iframe will be inserted here by JavaScript -->
+          <iframe
+            id="youtubeVideo"
+            width="560"
+            height="315"
+            src=""
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          >
+          </iframe>
         </div>
       </div>
-    </footer>
-    -->
+    </div>
 
     <div id="demoModal" class="modal">
       <div class="modal-content">
-        <span class="close-button">×</span>
+        <span class="close-button demo-close-button">×</span>
         <h2>Заказать демонстрацию Januya</h2>
         <p>
           Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее
@@ -289,36 +298,25 @@
     </div>
 
     <script>
-      const modal = document.getElementById("demoModal");
-      const openModalButtons = document.querySelectorAll(
-        "header .btn-secondary, #cta-final .btn-primary",
+      const demoModal = document.getElementById("demoModal");
+      const openDemoModalButtons = document.querySelectorAll(
+        ".open-demo-modal-btn",
       );
-      const closeButton = document.querySelector(".modal .close-button");
+      const closeDemoButton = document.querySelector(".demo-close-button");
       const demoForm = document.getElementById("demoForm");
 
-      openModalButtons.forEach((btn) => {
-        if (
-          btn.textContent.includes("Заказать демо") ||
-          btn.textContent.includes("Запросить демо сейчас")
-        ) {
-          btn.onclick = function (event) {
-            event.preventDefault();
-            modal.classList.add("active");
-          };
-        }
+      openDemoModalButtons.forEach((btn) => {
+        btn.onclick = function (event) {
+          event.preventDefault();
+          demoModal.classList.add("active");
+        };
       });
 
-      if (closeButton) {
-        closeButton.onclick = function () {
-          modal.classList.remove("active");
+      if (closeDemoButton) {
+        closeDemoButton.onclick = function () {
+          demoModal.classList.remove("active");
         };
       }
-
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.classList.remove("active");
-        }
-      };
 
       if (demoForm) {
         demoForm.onsubmit = async function (event) {
@@ -340,7 +338,7 @@
               const result = await response.text();
               console.log("Success:", result);
               alert("Спасибо за вашу заявку! Мы скоро свяжемся с вами.");
-              modal.classList.remove("active");
+              demoModal.classList.remove("active");
               demoForm.reset();
             } else {
               console.error(
@@ -364,9 +362,48 @@
         };
       }
 
+      const videoModal = document.getElementById("videoModal");
+      const openVideoBtn = document.getElementById("openVideoBtn");
+      const closeVideoBtn = document.querySelector(".video-close-button");
+      const youtubeVideo = document.getElementById("youtubeVideo");
+
+      const videoId = "9U12_wETUjo";
+      const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+      function openVideoModal() {
+        youtubeVideo.src = videoSrc;
+        videoModal.classList.add("active");
+      }
+
+      function closeVideoModal() {
+        videoModal.classList.remove("active");
+        youtubeVideo.src = "";
+      }
+
+      openVideoBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openVideoModal();
+      });
+
+      closeVideoBtn.addEventListener("click", closeVideoModal);
+
+      window.onclick = function (event) {
+        if (event.target == demoModal) {
+          demoModal.classList.remove("active");
+        }
+        if (event.target == videoModal) {
+          closeVideoModal();
+        }
+      };
+
       document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && modal.classList.contains("active")) {
-          modal.classList.remove("active");
+        if (event.key === "Escape") {
+          if (demoModal.classList.contains("active")) {
+            demoModal.classList.remove("active");
+          }
+          if (videoModal.classList.contains("active")) {
+            closeVideoModal();
+          }
         }
       });
     </script>
