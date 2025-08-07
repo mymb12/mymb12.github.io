@@ -717,3 +717,234 @@ footer p {
   opacity: 1;
   color: var(--primary-color);
 }
+
+/* --- STYLES FOR HEADER AND INSTRUCTION BUTTON --- */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.instruction-btn {
+  background-color: #f0f8ff; /* A subtle, light blue */
+  color: #4a6a8a;
+  border: 1px solid #cce0ff;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+}
+
+.instruction-btn:hover {
+  background-color: #e6f2ff;
+  border-color: #b3d1ff;
+  color: #3b556e;
+}
+
+.instruction-btn i {
+  margin-right: 6px;
+}
+
+/* --- STYLES FOR INSTRUCTION MODAL CONTENT --- */
+.instruction-note {
+  background-color: #f1f3f5; /* Light grey background */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px !important; /* Overriding default p margin */
+  font-weight: 500;
+  color: var(--text-color) !important;
+  font-size: 1rem !important;
+}
+
+.instruction-list {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+  color: var(--light-text-color);
+}
+
+.instruction-list li {
+  margin-bottom: 12px;
+  padding-left: 10px;
+}
+
+.troubleshooting-box {
+  border-left: 4px solid #e03131; /* Red color for warning */
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.troubleshooting-box h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c92a2a;
+  margin-bottom: 8px;
+}
+
+.troubleshooting-box p {
+  font-size: 0.95rem;
+  margin-bottom: 0 !important;
+}
+
+/* Responsive adjustment for the new header button */
+@media (max-width: 768px) {
+  .instruction-btn {
+    display: none; /* Hide the button on small screens to avoid clutter */
+  }
+}
+
+/* --- STYLES FOR FINAL INSTRUCTION MODAL CONTENT --- */
+.instruction-note {
+  background-color: #f1f3f5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px !important;
+  font-weight: 500;
+  color: var(--text-color) !important;
+  font-size: 1rem !important;
+}
+
+/* New wrapper to create a positioning context */
+.instruction-content-wrapper {
+  position: relative;
+  /* Add space on the right for the absolute image to sit in */
+  padding-right: 180px;
+  margin-bottom: 30px;
+}
+
+/* The image is now "floating" on a second layer */
+.instruction-floating-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instruction-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--light-text-color);
+}
+
+.instruction-list li {
+  margin-bottom: 12px;
+}
+
+.troubleshooting-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c92a2a;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.call-center-info {
+  background-color: #e6f5e6;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.call-center-info i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.call-center-info span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--light-text-color);
+}
+
+.call-center-info a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.call-center-info a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive fallback for small screens */
+@media (max-width: 500px) {
+  .instruction-content-wrapper {
+    position: static; /* Turn off absolute positioning context */
+    padding-right: 0;
+  }
+  .instruction-floating-image {
+    position: static; /* Become a normal block element */
+    display: block;
+    margin: 0 auto 20px auto; /* Center it with space below */
+  }
+}
+
+/* --- NEW STYLES FOR LANGUAGE SWITCHER --- */
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+  background-color: #f8f8f8;
+}
+
+.dropdown-toggle::after {
+  content: "▼";
+  font-size: 0.6em;
+  margin-left: 4px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--white-color);
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  right: 0;
+  margin-top: 8px;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: var(--primary-color);
+}
