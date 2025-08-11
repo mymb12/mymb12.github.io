@@ -199,7 +199,7 @@ const translations = {
     instStep3: "3. Шам жасыл болғанша күтіңіз",
     instStep4: "4. Сайтты ашыңыз (localhost:5454)",
     instTroubleshootTitle: "Егер шам қызыл жыпылықтаса:",
-    instContact: "Call-орталықпен хабарласыңыз:",
+    instContact: "Call-орталыққа хабарласыңыз:",
   },
 
   // Russian Translations (Your original text)
