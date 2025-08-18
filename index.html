@@ -51,7 +51,6 @@
             <li><a href="#faq" data-translate-key="navFaq">FAQ</a></li>
           </ul>
         </nav>
-        <!-- NEW LANGUAGE SWITCHER -->
         <div id="language-switcher" class="language-switcher">
           <a href="#" class="dropdown-toggle">
             <i class="fas fa-globe"></i>
@@ -362,7 +361,22 @@
     </div>
 
     <div id="videoModal" class="modal">
-      <!-- Video modal is unchanged -->
+      <div class="modal-content video-modal-content">
+        <span class="close-button video-close-button">&times;</span>
+        <div class="video-container">
+          <iframe
+            id="youtubeVideo"
+            width="560"
+            height="315"
+            src=""
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </div>
     </div>
 
     <div id="demoModal" class="modal">
